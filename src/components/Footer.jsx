@@ -1,21 +1,10 @@
-import { FaMastodon, FaCode, FaReddit } from 'react-icons/fa';
+import { FaMastodon, FaReddit, FaCode } from 'react-icons/fa';
 
 export default function Footer() {
     return (
         <footer
-            className={`
-                w-full
-                px-4 py-3
-                bg-white text-gray-600
-                border-t border-gray-200
-                dark:bg-gray-900 dark:text-gray-300 dark:border-gray-800
-                transition-colors
-                z-50
-                ${typeof window !== "undefined" && window.innerWidth >= 768
-                    ? "fixed bottom-0 left-0"
-                    : "relative"}
-                md:fixed md:bottom-0 md:left-0
-            `}
+            className="w-full px-4 py-3 bg-white text-gray-600 border-t border-gray-200 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-800 transition-colors z-50
+                md:fixed md:bottom-0 md:left-0"
         >
             <div className="flex justify-center space-x-6">
                 <a
@@ -40,7 +29,7 @@ export default function Footer() {
                     href="https://codeberg.org/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-[#144b49] dark:hover:text-[#6fd6c9]"
+                    className="hover:text-[#144b49] dark:hover:text-[#144b49]"
                     aria-label="Codeberg"
                 >
                     <FaCode size={24} />
