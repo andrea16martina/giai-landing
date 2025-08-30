@@ -11,8 +11,19 @@ const Hero = () => {
 
     return (
         <section
-            className="relative flex flex-col justify-center items-center min-h-[87vh] px-4 text-center bg-white dark:bg-gray-900 transition-colors"
+            className="relative flex flex-col justify-center items-center min-h-[80vh] md:min-h-[65vh] lg:min-h-[60vh] px-4 text-center bg-gradient-to-br from-blue-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden"
         >
+            {/* Geometric Pattern Background */}
+            <div className="absolute inset-0 opacity-5 dark:opacity-10">
+                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <defs>
+                        <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid)" />
+                </svg>
+            </div>
             {/* Logo as Background */}
             <div className="absolute inset-0 flex justify-center items-center">
                 <img
@@ -22,13 +33,18 @@ const Hero = () => {
                 />
             </div>
             {/* Content */}
-            <div className="relative z-10 flex flex-col justify-center items-center h-full backdrop-blur-[1px] rounded-lg p-8 max-w-2xl">
+            <div className="relative z-10 flex flex-col justify-center items-center h-full backdrop-blur-[1px] rounded-lg p-10 max-w-2xl">
                 {/* Title */}
-                <h1 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-t from-blue-200 via-blue-400 to-blue-900 bg-clip-text text-transparent mb-4 tracking-tight leading-relaxed animate-[fade-in-up_1s_ease-out_0.3s_forwards] motion-safe:animate-[fade-in-up_1s_ease-out_0.3s_forwards] motion-reduce:animate-none drop-shadow-lg">
-                    Gi AI – Generative Insights
-                </h1>
+                <div className="flex flex-col items-center mb-6">
+                    <h1 className="text-6xl md:text-7xl font-extrabold bg-gradient-to-t from-blue-200 via-blue-400 to-blue-900 bg-clip-text text-transparent tracking-tight leading-relaxed animate-[fade-in-up_1s_ease-out_0.3s_forwards] motion-safe:animate-[fade-in-up_1s_ease-out_0.3s_forwards] motion-reduce:animate-none drop-shadow-lg">
+                        Gi AI
+                    </h1>
+                    <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-t from-blue-300 via-blue-500 to-blue-800 bg-clip-text text-transparent tracking-wide leading-loose animate-[fade-in-up_1s_ease-out_0.4s_forwards] motion-safe:animate-[fade-in-up_1s_ease-out_0.4s_forwards] motion-reduce:animate-none drop-shadow-md mt-2 pb-2">
+                        Generative Insights
+                    </h2>
+                </div>
                 {/* Description */}
-                <p className="text-base md:text-lg text-gray-800 dark:text-gray-300 mb-6 max-w-md mx-auto leading-relaxed animate-[fade-in-up_1s_ease-out_0.5s_forwards] motion-safe:animate-[fade-in-up_1s_ease-out_0.5s_forwards] motion-reduce:animate-none drop-shadow-md">
+                <p className="text-base md:text-lg text-gray-800 dark:text-gray-300 mb-6 max-w-md mx-auto leading-relaxed animate-[fade-in-up_1s_ease-out_0.5s_forwards] motion-safe:animate-[fade-in-up_1s_ease-out_0.5s_forwards] motion-reduce:animate-none drop-shadow-md whitespace-nowrap">
                     Unlock the power of generative AI for actionable insights.
                 </p>
                 {/* Explore Button */}

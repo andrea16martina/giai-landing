@@ -3,8 +3,7 @@ import { FaMastodon, FaReddit, FaCode } from 'react-icons/fa';
 export default function Footer() {
     return (
         <footer
-            className="w-full px-4 py-3 bg-white text-gray-600 border-t border-gray-200 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-800 transition-colors z-50
-                md:fixed md:bottom-0 md:left-0"
+            className="w-full px-4 py-3 bg-white text-gray-600 border-t border-gray-200 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-800 transition-colors z-50"
         >
             <div className="flex justify-center space-x-6">
                 <a
