@@ -1,4 +1,6 @@
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { createPortal } from 'react-dom';
 
 /**
  * Navigation bar component with sticky positioning and responsive design.
@@ -7,8 +9,25 @@ import { Link } from 'react-router-dom';
  * @returns {JSX.Element} The navigation bar with logo and navigation elements
  */
 export default function Navbar() {
-  return (
-    <header className="sticky top-0 z-50 w-full h-12 sm:h-14 px-2 sm:px-4 flex justify-between items-center border-b border-blue-500 shadow-lg transition-colors relative overflow-hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-md">
+  const [portalEl, setPortalEl] = useState(null);
+
+  useEffect(() => {
+    const el = document.createElement('div');
+    el.setAttribute('id', 'navbar-portal');
+    // ensure portal container sits at the end of body so it's above other elements
+    document.body.appendChild(el);
+    setPortalEl(el);
+    return () => {
+      try {
+        document.body.removeChild(el);
+      } catch (e) {
+        // ignore
+      }
+    };
+  }, []);
+
+  const header = (
+    <header className="fixed top-0 left-0 right-0 z-[9999] w-full h-12 sm:h-14 px-2 sm:px-4 flex justify-between items-center border-b border-blue-500 shadow-lg transition-colors overflow-visible bg-white/95 dark:bg-gray-900/95 backdrop-blur-md">
       <Link to="/" className="flex items-center h-full relative z-10">
         <img
           src="/logo_toolSVGw.svg"
@@ -27,7 +46,7 @@ export default function Navbar() {
           <span className="relative z-10 flex items-center gap-2">
             Launch Tool
             <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </span>
           <span className="absolute inset-0 rounded-full pointer-events-none group-hover:shadow-[0_0_20px_5px_rgba(59,130,246,0.15)] transition-all duration-200"></span>
@@ -35,4 +54,7 @@ export default function Navbar() {
       </div>
     </header>
   );
+
+  if (!portalEl) return null;
+  return createPortal(header, portalEl);
 }
