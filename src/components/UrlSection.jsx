@@ -103,7 +103,7 @@ const UrlSection = ({ progress, isActive }) => {
         y: isActive ? 0 : 50
       }}
       transition={{ duration: 0.5 }}
-      className="min-h-[55vh] w-1/2 flex items-center justify-center"
+      className="min-h-[55vh] w-full mx-auto max-w-5xl px-8 flex items-center justify-center"
       id='url-section'
     >
       <div className="bg-white/10 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200/20 dark:border-gray-700/50 rounded-xl px-6 py-8 shadow-2xl w-full max-w-[98vw] mx-auto">

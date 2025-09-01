@@ -4,6 +4,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import UrlSection from './UrlSection';
 import TopicSection from './TopicSection';
 import ProgressBar from './ProgressBar';
+import ActionsSection from './ActionsSection';
+import StatisticsSection from './StatisticsSection';
+import ChartsSection from './ChartsSection';
+import ReportSection from './ReportSection'
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -12,11 +16,12 @@ gsap.registerPlugin(ScrollTrigger);
  * DemoComponent - Interactive scroll-hijacked demo orchestrator
  *
  * Main component that creates a scroll-hijacked interactive experience using GSAP ScrollTrigger.
- * Manages the progression through different demo sections (URL input, topic selection, progress)
- * based on scroll position, providing smooth animations and transitions.
+ * Manages the progression through different demo sections in sequence: URL input, topic selection,
+ * progress bar, actions panel, statistics dashboard, charts visualization, and AI report.
+ * Each section appears and disappears based on scroll position with smooth transitions.
  *
  * @component
- * @returns {JSX.Element} Scroll-hijacked demo container with animated sections
+ * @returns {JSX.Element} Scroll-hijacked demo container with sequential animated sections
  *
  * @example
  * ```jsx
@@ -46,7 +51,8 @@ const DemoComponent = () => {
     const container = containerRef.current;
     if (!container) return;
 
-    const totalDuration = 8000;
+    // Extended duration for sequential sections (7 sections total)
+    const totalDuration = 14000;
 
     const trigger = ScrollTrigger.create({
       trigger: container,
@@ -77,39 +83,82 @@ const DemoComponent = () => {
       ref={containerRef}
       className="w-full relative min-h-screen z-10"
     >
-      {/* URL Section */}
-      {scrollProgress <= 0.4 && (
+      {/* URL Section - ridotto per dare spazio alle nuove sezioni */}
+      {scrollProgress <= 0.3 && (
         <div className="absolute w-full inset-0 flex items-center justify-center pt-16 z-20">
           <UrlSection
-            progress={Math.min(scrollProgress * 2.5, 1)} // Normalizza 0-0.4 a 0-1
-            isActive={isActive && scrollProgress <= 0.4}
+            progress={Math.min(scrollProgress * 3.33, 1)} // Normalizza 0-0.3 a 0-1
+            isActive={isActive && scrollProgress <= 0.3}
           />
         </div>
       )}
 
-      {/* Topic Section */}
-      {scrollProgress > 0.4 && scrollProgress <= 0.75 && (
+      {/* Topic Section - ridotto per dare spazio alle nuove sezioni */}
+      {scrollProgress > 0.3 && scrollProgress <= 0.5 && (
         <div className="absolute w-full inset-0 flex items-center justify-center pt-16 z-20">
           <TopicSection
-            progress={(scrollProgress - 0.4) / 0.35} // Normalizza 0.4-0.75 a 0-1
-            isActive={isActive && scrollProgress > 0.4 && scrollProgress <= 0.75}
+            progress={(scrollProgress - 0.3) / 0.2} // Normalizza 0.3-0.5 a 0-1
+            isActive={isActive && scrollProgress > 0.3 && scrollProgress <= 0.5}
           />
         </div>
       )}
 
-      {/* Progress Bar */}
-      {scrollProgress > 0.75 && (
+      {/* Progress Bar - ridotto per dare spazio alle nuove sezioni */}
+      {scrollProgress > 0.5 && scrollProgress <= 0.6 && (
         <div className="absolute w-full inset-0 flex items-center justify-center pt-16 z-20">
-          <div className="w-2/3 text-center">
+          <div className="w-full mx-auto max-w-5xl text-center">
             <ProgressBar
-              progress={(scrollProgress - 0.75) / 0.25} // Normalizza 0.75-1.0 a 0-1
-              isActive={isActive && scrollProgress > 0.75}
+              progress={(scrollProgress - 0.5) / 0.1} // Normalizza 0.5-0.6 a 0-1
+              isActive={isActive && scrollProgress > 0.5 && scrollProgress <= 0.6}
             />
-            {scrollProgress >= 1 && (
-              <div className="mt-8 text-2xl font-bold text-gray-800 dark:text-gray-200">
-                Analysis Complete!
-              </div>
-            )}
+          </div>
+        </div>
+      )}
+
+      {/* Actions Section */}
+      {scrollProgress > 0.6 && scrollProgress <= 0.7 && (
+        <div className="absolute w-full inset-0 flex items-start justify-center px-8 pt-24 z-20">
+          <div className="w-full max-w-4xl mt-12">
+            <ActionsSection
+              progress={(scrollProgress - 0.6) / 0.1} 
+              isActive={isActive && scrollProgress > 0.6 && scrollProgress <= 0.7}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Statistics Section */}
+      {scrollProgress > 0.7 && scrollProgress <= 0.8 && (
+        <div className="absolute w-full inset-0 flex items-center px-8 justify-center pt-16 z-20">
+          <div className="w-full max-w-4xl">
+            <StatisticsSection
+              progress={(scrollProgress - 0.7) / 0.1} // Normalizza 0.7-0.8 a 0-1
+              isActive={isActive && scrollProgress > 0.7 && scrollProgress <= 0.8}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Charts Section */}
+      {scrollProgress > 0.8 && scrollProgress < 0.9 && (
+        <div className="absolute w-full inset-0 px-8 flex items-center justify-center pt-16 z-20">
+          <div className="w-full max-w-4xl">
+            <ChartsSection
+              progress={(scrollProgress - 0.8) / 0.1} 
+              isActive={isActive && scrollProgress > 0.8 && scrollProgress < 0.9}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Report Section */}
+      {scrollProgress >= 0.9 && (
+        <div className="absolute w-full inset-0 flex items-center pb-4 px-8 justify-center pt-16 z-20">
+          <div className="w-full max-w-4xl">
+            <ReportSection
+              progress={(scrollProgress - 0.9) / 0.1} 
+              isActive={isActive && scrollProgress >= 0.9}
+            />
           </div>
         </div>
       )}
