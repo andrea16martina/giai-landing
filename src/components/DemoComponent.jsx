@@ -46,14 +46,14 @@ const DemoComponent = () => {
     const container = containerRef.current;
     if (!container) return;
 
-    const totalDuration = 4000;
+    const totalDuration = 8000;
 
     const trigger = ScrollTrigger.create({
       trigger: container,
       start: 'top top',
       end: `+=${totalDuration}`,
       pin: true,
-      scrub: 1,
+      scrub: 1.5,
       onUpdate: (self) => {
         const progress = self.progress;
         setScrollProgress(progress);
@@ -73,31 +73,37 @@ const DemoComponent = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full relative min-h-screen">
-      {scrollProgress <= 0.5 && (
-        <div className="absolute w-full inset-0 flex items-center justify-center pt-16">
+    <div
+      ref={containerRef}
+      className="w-full relative min-h-screen z-10"
+    >
+      {/* URL Section */}
+      {scrollProgress <= 0.4 && (
+        <div className="absolute w-full inset-0 flex items-center justify-center pt-16 z-20">
           <UrlSection
-            progress={Math.min(scrollProgress * 2, 1)}
-            isActive={isActive && scrollProgress <= 0.5}
+            progress={Math.min(scrollProgress * 2.5, 1)} // Normalizza 0-0.4 a 0-1
+            isActive={isActive && scrollProgress <= 0.4}
           />
         </div>
       )}
 
-      {scrollProgress > 0.5 && scrollProgress <= 0.7 && (
-        <div className="absolute w-full inset-0 flex items-center justify-center pt-16">
+      {/* Topic Section */}
+      {scrollProgress > 0.4 && scrollProgress <= 0.75 && (
+        <div className="absolute w-full inset-0 flex items-center justify-center pt-16 z-20">
           <TopicSection
-            progress={(scrollProgress - 0.5) / 0.2}
-            isActive={isActive && scrollProgress > 0.5 && scrollProgress <= 0.7}
+            progress={(scrollProgress - 0.4) / 0.35} // Normalizza 0.4-0.75 a 0-1
+            isActive={isActive && scrollProgress > 0.4 && scrollProgress <= 0.75}
           />
         </div>
       )}
 
-      {scrollProgress > 0.7 && (
-        <div className="absolute w-full inset-0 flex items-center justify-center pt-16">
+      {/* Progress Bar */}
+      {scrollProgress > 0.75 && (
+        <div className="absolute w-full inset-0 flex items-center justify-center pt-16 z-20">
           <div className="w-2/3 text-center">
             <ProgressBar
-              progress={(scrollProgress - 0.7) / 0.3}
-              isActive={isActive && scrollProgress > 0.7}
+              progress={(scrollProgress - 0.75) / 0.25} // Normalizza 0.75-1.0 a 0-1
+              isActive={isActive && scrollProgress > 0.75}
             />
             {scrollProgress >= 1 && (
               <div className="mt-8 text-2xl font-bold text-gray-800 dark:text-gray-200">

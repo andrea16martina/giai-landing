@@ -62,7 +62,7 @@ const TopicSection = ({ progress, isActive }) => {
       setSuggestedTopics(exampleTopics);
     }
 
-    const smoothProgress = Math.min(progress * 1.3, 1);
+    const smoothProgress = Math.min(progress * 1.5, 1);
     const topicsToShow = Math.min(Math.floor(smoothProgress * exampleTopics.length), exampleTopics.length);
     const currentSelectedIndex = Math.max(0, topicsToShow - 1);
 
@@ -93,10 +93,10 @@ const TopicSection = ({ progress, isActive }) => {
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{
-              opacity: progress > 0.01 ? 1 : 0,
+              opacity: progress > 0.02 ? 1 : 0,
               y: progress > 0.01 ? 0 : 15
             }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }} 
             className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200 font-medium"
           >
             <Sparkles className="w-4 h-4 text-blue-600 dark:text-blue-400" />
@@ -107,10 +107,10 @@ const TopicSection = ({ progress, isActive }) => {
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{
-                opacity: progress > 0.03 ? 1 : 0,
-                y: progress > 0.03 ? 0 : 15
+                opacity: progress > 0.06 ? 1 : 0,
+                y: progress > 0.06 ? 0 : 15
               }}
-              transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
               className="relative"
             >
               <input
@@ -124,8 +124,8 @@ const TopicSection = ({ progress, isActive }) => {
 
             <motion.p
               initial={{ opacity: 0 }}
-              animate={{ opacity: progress > 0.04 ? 1 : 0 }}
-              transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
+              animate={{ opacity: progress > 0.08 ? 1 : 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
               className="text-xs text-gray-600 dark:text-gray-300 flex items-center gap-1 font-medium"
             >
               <Zap size={12} className="text-blue-600 dark:text-blue-400" />
@@ -133,12 +133,12 @@ const TopicSection = ({ progress, isActive }) => {
             </motion.p>
           </div>
 
-          {progress > 0.02 && (
+          {progress > 0.04 && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{
-                opacity: progress > 0.05 ? 1 : 0,
-                y: progress > 0.05 ? 0 : 20
+                opacity: progress > 0.07 ? 1 : 0,
+                y: progress > 0.07 ? 0 : 20
               }}
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="bg-white/30 dark:bg-gray-800/70 backdrop-blur-md border border-gray-300/40 dark:border-gray-600/60 rounded-xl px-4 py-4 shadow-xl"
@@ -150,7 +150,7 @@ const TopicSection = ({ progress, isActive }) => {
                     opacity: progress > 0.08 ? 1 : 0,
                     scale: progress > 0.08 ? 1 : 0.8
                   }}
-                  transition={{ duration: 0.4, ease: "easeOut", delay: 0.6 }}
+                  transition={{ duration: 0.5, ease: "easeOut", delay: 0.9 }}
                 >
                   <Sparkles size={16} className="text-blue-700 dark:text-blue-300" />
                 </motion.div>
@@ -160,7 +160,7 @@ const TopicSection = ({ progress, isActive }) => {
                     opacity: progress > 0.08 ? 1 : 0,
                     x: progress > 0.08 ? 0 : -10
                   }}
-                  transition={{ duration: 0.4, ease: "easeOut", delay: 0.7 }}
+                  transition={{ duration: 0.5, ease: "easeOut", delay: 1.0 }}
                   className="font-semibold text-gray-800 dark:text-gray-100 text-sm"
                 >
                   AI Suggestions
@@ -170,7 +170,7 @@ const TopicSection = ({ progress, isActive }) => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {exampleTopics.map((suggestion, idx) => {
                   const topicThreshold = (idx + 1) / exampleTopics.length;
-                  const isVisible = progress >= topicThreshold * 0.8;
+                  const isVisible = progress >= topicThreshold * 0.7;
                   const isSelected = idx === selectedTopicIndex;
 
                   return (
@@ -183,10 +183,10 @@ const TopicSection = ({ progress, isActive }) => {
                         scale: isSelected ? 1.05 : 1
                       }}
                       transition={{
-                        duration: 0.4,
+                        duration: 0.5,
                         ease: "easeOut",
-                        delay: isVisible ? idx * 0.12 : 0,
-                        scale: { duration: 0.3, ease: "easeOut" }
+                        delay: isVisible ? idx * 0.15 : 0,
+                        scale: { duration: 0.4, ease: "easeOut" }
                       }}
                       className={`px-4 py-3 rounded-xl text-sm font-medium text-left border-2 ${
                         isSelected

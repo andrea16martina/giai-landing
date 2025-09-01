@@ -23,11 +23,16 @@ import MatrixRain from './MatrixRain';
  */
 const Layout = ({ children }) => {
   return (
-  <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/80 to-blue-100/60 dark:from-black dark:via-gray-950 dark:to-gray-900 relative overflow-visible">
-      <MatrixRain />
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/80 to-blue-100/60 dark:from-black dark:via-gray-950 dark:to-gray-900 relative overflow-visible">
+      {/* Matrix Rain Background */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <MatrixRain />
+      </div>
 
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(59,130,246,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.06)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none z-10"></div>
+      {/* Grid Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(59,130,246,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.06)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none z-10" />
 
+      {/* System Status Indicators */}
       <div className="absolute top-14 sm:top-16 left-2 text-blue-700 dark:text-blue-300 font-mono text-xs animate-pulse opacity-90 pointer-events-none z-30 drop-shadow-lg">
         SYSTEM ONLINE
       </div>
@@ -35,6 +40,7 @@ const Layout = ({ children }) => {
         v0.1.0-beta
       </div>
 
+      {/* Main Content */}
       <div className="relative z-20 pt-15 sm:pt-16">
         {children}
       </div>

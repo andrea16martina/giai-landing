@@ -29,7 +29,7 @@ const ProgressBar = ({ progress = 0, isActive }) => {
       transition={{ duration: 0.4, ease: "easeOut" }}
       className="mt-12 mb-8 w-full mx-auto px-8"
     >
-      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-6 overflow-hidden shadow-lg border-2 border-gray-300 dark:border-gray-600">
+      <div className="w-full rounded-full h-6 overflow-hidden shadow-lg border-2 border-gray-300 dark:border-gray-600">
         <motion.div
           className="h-full w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full"
           style={{
