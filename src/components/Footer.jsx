@@ -1,10 +1,19 @@
 import { FaMastodon, FaReddit, FaCode } from 'react-icons/fa';
 
 /**
- * Footer component with social media links and responsive design.
- * Features dark mode support and hover effects for social icons.
+ * Footer - Site footer with social media links
  *
- * @returns {JSX.Element} The footer with social media links
+ * Displays social media and community platform links with hover effects.
+ * Features responsive design, dark mode support, and accessibility attributes.
+ * Positioned at the bottom of the page with backdrop blur effect.
+ *
+ * @component
+ * @returns {JSX.Element} Footer with social media navigation links
+ *
+ * @example
+ * ```jsx
+ * <Footer />
+ * ```
  */
 export default function Footer() {
   return (

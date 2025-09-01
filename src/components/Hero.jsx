@@ -1,13 +1,24 @@
 import React from 'react';
 
 /**
- * Hero section component displaying the main title, description, and call-to-action buttons.
- * Features responsive design with optimized typography and interactive elements.
+ * Hero - Main landing section component
  *
- * @returns {JSX.Element} The hero section with title, description, and buttons
+ * Displays the primary hero section with title, description, and call-to-action buttons.
+ * Features responsive design, smooth scrolling navigation, and interactive elements
+ * that guide users to explore the platform's capabilities.
+ *
+ * @component
+ * @returns {JSX.Element} Hero section with branding and navigation
+ *
+ * @example
+ * ```jsx
+ * <Hero />
+ * ```
  */
 const Hero = () => {
-  // Scroll to next section handler
+  /**
+   * Smoothly scrolls to the URL section when "Learn More" is clicked
+   */
   const handleScroll = () => {
     const nextSection = document.getElementById('url-section');
     if (nextSection) {

@@ -3,18 +3,30 @@ import { Link } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 
 /**
- * Navigation bar component with sticky positioning and responsive design.
- * Features logo, navigation links, and call-to-action button with dark mode support.
+ * Navbar - Fixed navigation bar component
  *
- * @returns {JSX.Element} The navigation bar with logo and navigation elements
+ * Displays a responsive navigation bar with logo, branding, and call-to-action button.
+ * Uses React Portal to render outside the normal DOM hierarchy for proper z-indexing
+ * and positioning. Features dark mode support and smooth hover animations.
+ *
+ * @component
+ * @returns {JSX.Element} Fixed navigation bar rendered via portal
+ *
+ * @example
+ * ```jsx
+ * <Navbar />
+ * ```
  */
 export default function Navbar() {
+  /**
+   * Portal container element for rendering navbar outside normal DOM hierarchy
+   * @type {[HTMLElement|null, function]}
+   */
   const [portalEl, setPortalEl] = useState(null);
 
   useEffect(() => {
     const el = document.createElement('div');
     el.setAttribute('id', 'navbar-portal');
-    // ensure portal container sits at the end of body so it's above other elements
     document.body.appendChild(el);
     setPortalEl(el);
     return () => {

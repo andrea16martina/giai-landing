@@ -1,10 +1,19 @@
 import React from "react";
 
 /**
- * Renovation section component displayed when content is under development.
- * Features responsive design with dark mode support and clear messaging.
+ * Renovation - Under development placeholder section
  *
- * @returns {JSX.Element} The renovation placeholder section
+ * Displays a maintenance/under construction message when content is being
+ * developed or renovated. Features responsive typography, dark mode support,
+ * and clear user communication about ongoing work.
+ *
+ * @component
+ * @returns {JSX.Element} Placeholder section with renovation messaging
+ *
+ * @example
+ * ```jsx
+ * <Renovation />
+ * ```
  */
 const Renovation = () => (
   <section

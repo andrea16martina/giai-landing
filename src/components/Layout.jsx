@@ -2,13 +2,24 @@ import React from 'react';
 import MatrixRain from './MatrixRain';
 
 /**
- * Global layout component that provides the main structure and visual effects
- * for the entire application. Includes Matrix rain animation, neon grid overlay,
- * glowing lines, and corner decorations with full dark mode support.
+ * Layout - Main application layout wrapper
  *
- * @param {Object} props - Component props
- * @param {React.ReactNode} props.children - Child components to render
- * @returns {JSX.Element} The layout wrapper with all visual effects
+ * Provides the global structure and visual effects for the entire application.
+ * Includes Matrix rain animation background, neon grid overlay, system status
+ * indicators, and responsive spacing. Features full dark mode support and
+ * layered visual effects for an immersive tech experience.
+ *
+ * @component
+ * @param {Object} props - Component properties
+ * @param {React.ReactNode} props.children - Child components to render within layout
+ * @returns {JSX.Element} Layout wrapper with visual effects and structure
+ *
+ * @example
+ * ```jsx
+ * <Layout>
+ *   <App />
+ * </Layout>
+ * ```
  */
 const Layout = ({ children }) => {
   return (

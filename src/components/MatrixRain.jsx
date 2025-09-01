@@ -1,17 +1,28 @@
 import React, { useEffect, useRef } from 'react';
 
 /**
- * Matrix rain animation component that creates a dynamic falling character effect.
-    <canvas
-      ref={canvasRef}
-      className={`absolute inset-0 w-full h-full opacity-70 dark:opacity-60 pointer-events-none z-0 ${className}`}
-    />utomatically adapts to light/dark mode and provides responsive performance.
+ * MatrixRain - Animated matrix-style falling characters background effect
  *
- * @param {Object} props - Component props
- * @param {string} props.className - Additional CSS classes to apply
+ * Creates a dynamic Matrix rain animation with falling Japanese characters,
+ * numbers, and symbols. Features responsive design, dark mode adaptation,
+ * glow effects, and performance optimizations. Automatically adjusts to
+ * screen size and device capabilities.
+ *
+ * @component
+ * @param {Object} props - Component properties
+ * @param {string} [props.className=""] - Additional CSS classes for styling
  * @returns {JSX.Element} Canvas element with matrix rain animation
+ *
+ * @example
+ * ```jsx
+ * <MatrixRain className="opacity-50" />
+ * ```
  */
 const MatrixRain = ({ className = "" }) => {
+  /**
+   * Reference to the canvas element for drawing the animation
+   * @type {React.RefObject<HTMLCanvasElement>}
+   */
   const canvasRef = useRef(null);
 
   useEffect(() => {

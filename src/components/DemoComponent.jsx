@@ -1,27 +1,112 @@
-import React from 'react';
-import { useScroll, useTransform } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import UrlSection from './UrlSection';
 import TopicSection from './TopicSection';
 import ProgressBar from './ProgressBar';
 
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
+
 /**
- * Main demo component that orchestrates the scroll-driven interactive demo
- * @returns {JSX.Element} The complete demo component with URL and topic sections
+ * DemoComponent - Interactive scroll-hijacked demo orchestrator
+ *
+ * Main component that creates a scroll-hijacked interactive experience using GSAP ScrollTrigger.
+ * Manages the progression through different demo sections (URL input, topic selection, progress)
+ * based on scroll position, providing smooth animations and transitions.
+ *
+ * @component
+ * @returns {JSX.Element} Scroll-hijacked demo container with animated sections
+ *
+ * @example
+ * ```jsx
+ * <DemoComponent />
+ * ```
  */
 const DemoComponent = () => {
-  const { scrollYProgress } = useScroll();
-  const section1Opacity = useTransform(scrollYProgress, [0, 0.4, 0.41], [0, 1, 0]);
-  const section1Y = useTransform(scrollYProgress, [0, 0.4, 0.41], [50, 0, -50]);
-  const section2Opacity = useTransform(scrollYProgress, [0.55, 0.6, 0.9], [0, 1, 1]);
-  const section2Y = useTransform(scrollYProgress, [0.55, 0.6, 0.9], [50, 0, 0]);
+  /**
+   * Reference to the main container element for ScrollTrigger
+   * @type {React.RefObject<HTMLDivElement>}
+   */
+  const containerRef = useRef(null);
+
+  /**
+   * Current scroll progress through the demo (0-1)
+   * @type {[number, function]}
+   */
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  /**
+   * Whether the demo section is currently active/visible
+   * @type {[boolean, function]}
+   */
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const totalDuration = 4000;
+
+    const trigger = ScrollTrigger.create({
+      trigger: container,
+      start: 'top top',
+      end: `+=${totalDuration}`,
+      pin: true,
+      scrub: 1,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        setScrollProgress(progress);
+        setIsActive(true);
+      },
+      onLeave: () => {
+        setIsActive(false);
+      },
+      onEnterBack: () => {
+        setIsActive(true);
+      }
+    });
+
+    return () => {
+      trigger.kill();
+    };
+  }, []);
 
   return (
-    <div className="bg-gradient-to-br from-white via-blue-50/80 to-blue-100/60 dark:from-black dark:via-gray-950 dark:to-gray-900 relative">
-      <div className="relative">
-        <UrlSection opacity={section1Opacity} y={section1Y} />
-        <TopicSection opacity={section2Opacity} y={section2Y} scrollYProgress={scrollYProgress} />
-        <ProgressBar scrollYProgress={scrollYProgress} />
-      </div>
+    <div ref={containerRef} className="w-full relative min-h-screen">
+      {scrollProgress <= 0.5 && (
+        <div className="absolute w-full inset-0 flex items-center justify-center pt-16">
+          <UrlSection
+            progress={Math.min(scrollProgress * 2, 1)}
+            isActive={isActive && scrollProgress <= 0.5}
+          />
+        </div>
+      )}
+
+      {scrollProgress > 0.5 && scrollProgress <= 0.7 && (
+        <div className="absolute w-full inset-0 flex items-center justify-center pt-16">
+          <TopicSection
+            progress={(scrollProgress - 0.5) / 0.2}
+            isActive={isActive && scrollProgress > 0.5 && scrollProgress <= 0.7}
+          />
+        </div>
+      )}
+
+      {scrollProgress > 0.7 && (
+        <div className="absolute w-full inset-0 flex items-center justify-center pt-16">
+          <div className="w-2/3 text-center">
+            <ProgressBar
+              progress={(scrollProgress - 0.7) / 0.3}
+              isActive={isActive && scrollProgress > 0.7}
+            />
+            {scrollProgress >= 1 && (
+              <div className="mt-8 text-2xl font-bold text-gray-800 dark:text-gray-200">
+                Analysis Complete!
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
