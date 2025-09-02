@@ -33,7 +33,7 @@ const CTASection = () => {
             </span>
           </div>
 
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+          <h2 className="text-2xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent leading-tight md:leading-[1.35]">
             Ready to Start Analyzing?
           </h2>
 
