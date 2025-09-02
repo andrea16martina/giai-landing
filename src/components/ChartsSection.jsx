@@ -353,7 +353,7 @@ const ChartsSection = ({ progress, isActive }) => {
 
             <div className="grid grid-cols-1 gap-3 sm:gap-4">
               {/* Bar Chart */}
-              <div className="h-72 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center shadow-inner">
+              <div className="h-56 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center shadow-inner">
                 <svg viewBox="0 0 500 200" className="w-full h-full">
                   <defs>
                     <pattern id="grid-bg" width="20" height="20" patternUnits="userSpaceOnUse">
