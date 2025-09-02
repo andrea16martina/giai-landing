@@ -169,7 +169,7 @@ const ChartsSection = ({ progress, isActive }) => {
 
                   <path d="M100,100 L170.2,100 A70,70 0 0,1 29.8,100 Z" fill="#10b981" stroke="#fff" strokeWidth="2"/>
 
-                  <g transform="translate(-25, 20)">
+                  <g transform="translate(-20, 20)">
                     <circle cx="5" cy="5" r="4" fill="#ef4444"/>
                     <text x="15" y="9" className="text-xs fill-gray-700 dark:fill-gray-300">Negative </text>
                     
@@ -353,38 +353,39 @@ const ChartsSection = ({ progress, isActive }) => {
 
             <div className="grid grid-cols-1 gap-3 sm:gap-4">
               {/* Bar Chart */}
-              <div className="h-56 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center shadow-inner">
-                <svg viewBox="0 0 400 150" className="w-full h-full">
+              <div className="h-72 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center shadow-inner">
+                <svg viewBox="0 0 500 200" className="w-full h-full">
                   <defs>
                     <pattern id="grid-bg" width="20" height="20" patternUnits="userSpaceOnUse">
                       <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f3f4f6" strokeWidth="0.5"/>
                     </pattern>
                   </defs>
-                  <rect width="400" height="150" fill="url(#grid-bg)" />
+                  <rect width="500" height="200" fill="url(#grid-bg)" />
                   
-                  <line x1="50" y1="160" x2="350" y2="160" stroke="#6b7280" strokeWidth="2"/>
-                  <line x1="50" y1="20" x2="50" y2="160" stroke="#6b7280" strokeWidth="2"/>
+                  <line x1="70" y1="170" x2="430" y2="170" stroke="#6b7280" strokeWidth="2"/>
+                  <line x1="70" y1="20" x2="70" y2="170" stroke="#6b7280" strokeWidth="2"/>
                   
-                  <rect x="70" y="120" width="25" height="40" fill="#3b82f6" rx="3"/>
-                  <rect x="105" y="100" width="25" height="60" fill="#8b5cf6" rx="3"/>
-                  <rect x="140" y="80" width="25" height="80" fill="#10b981" rx="3"/>
-                  <rect x="175" y="90" width="25" height="70" fill="#f59e0b" rx="3"/>
-                  <rect x="210" y="110" width="25" height="50" fill="#ef4444" rx="3"/>
+                  <rect x="90" y="130" width="35" height="40" fill="#3b82f6" rx="5"/>
+                  <rect x="150" y="110" width="35" height="60" fill="#8b5cf6" rx="5"/>
+                  <rect x="210" y="90" width="35" height="80" fill="#10b981" rx="5"/>
+                  <rect x="270" y="100" width="35" height="70" fill="#f59e0b" rx="5"/>
+                  <rect x="330" y="120" width="35" height="50" fill="#ef4444" rx="5"/>
                   
-                  <text x="82" y="180" className="text-xs fill-gray-600 text-center">0-50</text>
-                  <text x="117" y="180" className="text-xs fill-gray-600 text-center">51-100</text>
-                  <text x="152" y="180" className="text-xs fill-gray-600 text-center">101-200</text>
-                  <text x="187" y="180" className="text-xs fill-gray-600 text-center">201-500</text>
-                  <text x="222" y="180" className="text-xs fill-gray-600 text-center">500+</text>
+                  <text x="107.5" y="185" className="text-xs fill-gray-600 text-center font-medium">0-50</text>
+                  <text x="167.5" y="185" className="text-xs fill-gray-600 text-center font-medium">51-100</text>
+                  <text x="227.5" y="185" className="text-xs fill-gray-600 text-center font-medium">101-200</text>
+                  <text x="287.5" y="185" className="text-xs fill-gray-600 text-center font-medium">201-500</text>
+                  <text x="347.5" y="185" className="text-xs fill-gray-600 text-center font-medium">500+</text>
                   
-                  <text x="35" y="25" className="text-xs fill-gray-600">100</text>
-                  <text x="35" y="65" className="text-xs fill-gray-600">75</text>
-                  <text x="35" y="105" className="text-xs fill-gray-600">50</text>
-                  <text x="35" y="145" className="text-xs fill-gray-600">25</text>
-                  <text x="35" y="165" className="text-xs fill-gray-600">0</text>
+                  <text x="55" y="25" className="text-xs fill-gray-600 font-medium">100</text>
+                  <text x="55" y="55" className="text-xs fill-gray-600 font-medium">80</text>
+                  <text x="55" y="85" className="text-xs fill-gray-600 font-medium">60</text>
+                  <text x="55" y="115" className="text-xs fill-gray-600 font-medium">40</text>
+                  <text x="55" y="145" className="text-xs fill-gray-600 font-medium">20</text>
+                  <text x="55" y="175" className="text-xs fill-gray-600 font-medium">0</text>
                   
-                  <text x="200" y="195" className="text-sm fill-gray-700 text-center font-medium">Comment Length (words)</text>
-                  <text x="15" y="90" className="text-sm fill-gray-700 font-medium" transform="rotate(-90, 15, 90)">Count</text>
+                  <text x="250" y="195" className="text-sm fill-gray-700 text-center font-semibold">Comment Length (words)</text>
+                  <text x="30" y="95" className="text-sm fill-gray-700 font-semibold" transform="rotate(-90, 30, 95)">Count</text>
                 </svg>
               </div>
               
