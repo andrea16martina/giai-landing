@@ -18,6 +18,15 @@ import React, { useState } from 'react';
 const ChartsSection = ({ progress, isActive }) => {
   const [wordCloudFilter, setWordCloudFilter] = useState('all');
 
+  const getCurrentStep = () => {
+    if (progress <= 0.25) return 0;
+    if (progress <= 0.5) return 1;
+    if (progress <= 0.75) return 2;
+    return 3;
+  };
+
+  const currentStep = getCurrentStep();
+
   const getWordCloudData = (filter) => {
     const allWords = [
       { text: 'love', size: 24, sentiment: 'positive' },
@@ -140,6 +149,24 @@ const ChartsSection = ({ progress, isActive }) => {
           <span className="text-xl sm:text-2xl">📊</span>
           Data Visualizations
         </h3>
+
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex space-x-2">
+            {chartTypes.map((_, index) => (
+              <div
+                key={index}
+                className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                  index <= currentStep
+                    ? 'bg-blue-500 dark:bg-blue-400'
+                    : 'bg-gray-300 dark:bg-gray-600'
+                }`}
+              />
+            ))}
+          </div>
+          <span className="text-xs text-gray-500 dark:text-gray-400">
+            Chart {currentStep + 1} of {chartTypes.length}
+          </span>
+        </div>
 
         {/* Step 1: Sentiment Distribution */}
         {progress <= 0.25 && (
@@ -316,7 +343,7 @@ const ChartsSection = ({ progress, isActive }) => {
                   <text x="40" y="105" className="text-xs fill-gray-600 font-medium">0</text>
                   
                   <text x="200" y="190" className="text-sm fill-gray-700 text-center font-semibold">Date</text>
-                  <text x="10" y="90" className="text-sm fill-gray-700 font-semibold" transform='rotate(-90 20,90)'>Comments</text>
+                  <text x="10" y="90" className="text-sm fill-gray-700 font-semibold" transform="rotate(-90 20,90)">Comments</text>
 
                   <g transform="translate(70, 25)">
                     <line x1="0" y1="0" x2="12" y2="0" stroke="#10b981" strokeWidth="2" strokeLinecap="round"/>
@@ -387,33 +414,6 @@ const ChartsSection = ({ progress, isActive }) => {
                   <text x="250" y="195" className="text-sm fill-gray-700 text-center font-semibold">Comment Length (words)</text>
                   <text x="30" y="95" className="text-sm fill-gray-700 font-semibold" transform="rotate(-90, 30, 95)">Count</text>
                 </svg>
-              </div>
-              
-              <div className="mt-3 sm:mt-4 grid grid-cols-2 sm:grid-cols-5 gap-1.5 sm:gap-2">
-                {[
-                  { range: '0-50', label: 'Quick', color: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300' },
-                  { range: '51-100', label: 'Brief', color: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300' },
-                  { range: '101-200', label: 'Moderate', color: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300' },
-                  { range: '201-500', label: 'Detailed', color: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300' },
-                  { range: '500+', label: 'In-depth', color: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' },
-                ].map((item, index) => {
-                  const ranges = [
-                    { min: 0, max: 50 },
-                    { min: 51, max: 100 },
-                    { min: 101, max: 200 },
-                    { min: 201, max: 500 },
-                    { min: 501, max: Infinity }
-                  ];
-                  const count = getCommentCount(ranges[index].min, ranges[index].max);
-                  
-                  return (
-                    <div key={item.range} className={`text-center p-1.5 sm:p-2 rounded-lg ${item.color}`}>
-                      <div className="text-xs sm:text-sm font-semibold">{item.range}</div>
-                      <div className="text-lg sm:text-xl font-bold">{count}</div>
-                      <div className="text-xs opacity-75">{item.label}</div>
-                    </div>
-                  );
-                })}
               </div>
             </div>
           </div>
@@ -487,7 +487,7 @@ const ChartsSection = ({ progress, isActive }) => {
                             </div>
                           </div>
 
-                          <div className="h-20 flex items-center justify-center">
+                          <div className="h-16 flex items-center justify-center">
                             <svg viewBox="0 0 140 70" className="w-full h-full">
                               <rect width="140" height="70" fill="transparent"/>
                               {words.slice(0, 3).map((word, idx) => (
@@ -499,7 +499,7 @@ const ChartsSection = ({ progress, isActive }) => {
                                     sentiment === 'positive' ? 'fill-green-600' :
                                     sentiment === 'negative' ? 'fill-red-600' : 'fill-blue-600'
                                   }`}
-                                  style={{ fontSize: `${Math.min(word.size * 0.7, 16)}px` }}
+                                  style={{ fontSize: `${Math.min(word.size * 0.6, 14)}px` }}
                                 >
                                   {word.text}
                                 </text>
@@ -533,7 +533,7 @@ const ChartsSection = ({ progress, isActive }) => {
                       </div>
                     </div>
 
-                    <div className="h-32 flex items-center justify-center">
+                    <div className="h-28 flex items-center justify-center">
                       <svg viewBox="0 0 200 80" className="w-full h-full">
                         <rect width="200" height="80" fill="transparent"/>
                         {getWordCloudData(wordCloudFilter).slice(0, 6).map((word, idx) => (
@@ -545,7 +545,7 @@ const ChartsSection = ({ progress, isActive }) => {
                               wordCloudFilter === 'positive' ? 'fill-green-600' :
                               wordCloudFilter === 'negative' ? 'fill-red-600' : 'fill-blue-600'
                             }`}
-                            style={{ fontSize: `${Math.min(word.size * 0.8, 18)}px` }}
+                            style={{ fontSize: `${Math.min(word.size * 0.7, 16)}px` }}
                           >
                             {word.text}
                           </text>

@@ -147,18 +147,6 @@ const StatisticsSection = ({ progress, isActive }) => {
 
   return (
     <div className={`transition-all duration-500 ${isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
       <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-xl border border-gray-200 dark:border-gray-700">
         <h3 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-4 sm:mb-6 flex items-center gap-2">
           <span className="text-xl sm:text-2xl">📊</span>
@@ -214,10 +202,21 @@ const StatisticsSection = ({ progress, isActive }) => {
         {progress > 0.5 && (
           <div className={`transition-all duration-1000 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <div className="pt-6 sm:pt-8">
-              <h4 className="text-base sm:text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3 flex items-center gap-2">
-                <span className="text-base sm:text-lg">📈</span>
-                Analytics Dashboard
-              </h4>
+              <div className="flex items-center gap-3 mb-4 sm:mb-6 transform transition-all duration-500">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-lg flex items-center justify-center">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 00-2-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100">
+                    Analytics Dashboard
+                  </h4>
+                  <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                    Key performance metrics and engagement data
+                  </p>
+                </div>
+              </div>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 sm:gap-4">
                 {analyticsStats.map((stat, index) => (
                   <div
