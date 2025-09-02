@@ -18,10 +18,8 @@ import React, { useState } from 'react';
 const ChartsSection = ({ progress, isActive }) => {
   const [wordCloudFilter, setWordCloudFilter] = useState('all');
 
-  // Demo word cloud data
   const getWordCloudData = (filter) => {
     const allWords = [
-      // Positive words
       { text: 'love', size: 24, sentiment: 'positive' },
       { text: 'amazing', size: 28, sentiment: 'positive' },
       { text: 'great', size: 22, sentiment: 'positive' },
@@ -29,7 +27,6 @@ const ChartsSection = ({ progress, isActive }) => {
       { text: 'excellent', size: 18, sentiment: 'positive' },
       { text: 'fantastic', size: 16, sentiment: 'positive' },
       
-      // Neutral words
       { text: 'good', size: 20, sentiment: 'neutral' },
       { text: 'nice', size: 18, sentiment: 'neutral' },
       { text: 'cool', size: 16, sentiment: 'neutral' },
@@ -39,7 +36,6 @@ const ChartsSection = ({ progress, isActive }) => {
       { text: 'fine', size: 12, sentiment: 'neutral' },
       { text: 'average', size: 10, sentiment: 'neutral' },
       
-      // Negative words
       { text: 'bad', size: 16, sentiment: 'negative' },
       { text: 'terrible', size: 18, sentiment: 'negative' },
       { text: 'worst', size: 16, sentiment: 'negative' },
@@ -145,7 +141,7 @@ const ChartsSection = ({ progress, isActive }) => {
           Data Visualizations
         </h3>
 
-        {/* Step 1: Sentiment Distribution (0-25%) */}
+        {/* Step 1: Sentiment Distribution */}
         {progress <= 0.25 && (
           <div className="mb-3 sm:mb-4">
             <div className="flex items-center gap-3 mb-3 sm:mb-4 transform transition-all duration-500">
@@ -163,22 +159,17 @@ const ChartsSection = ({ progress, isActive }) => {
             </div>
 
             <div className="grid grid-cols-1 gap-3 sm:gap-4">
-              {/* Realistic Pie Chart */}
+              {/* Pie Chart */}
               <div className="mt-4 h-64 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center shadow-inner">
                 <svg viewBox="0 0 200 200" className="w-full h-full">
-                  {/* Pie slices */}
-                  
-                  {/* Red slice (33.3%) - 0° to 120° */}
-                  <path d="M100,100 L100,20 A80,80 0 0,1 180.2,100 Z" fill="#ef4444" stroke="#fff" strokeWidth="2"/>
-                  
-                  {/* Gray slice (33.3%) - 120° to 240° */}
-                  <path d="M100,100 L19.8,100 A80,80 0 0,1 100,20 Z" fill="#6b7280" stroke="#fff" strokeWidth="2"/>
-                  
-                  {/* Green slice (33.4%) - 240° to 360° */}
-                  <path d="M100,100 L180.2,100 A80,80 0 0,1 19.8,100 Z" fill="#10b981" stroke="#fff" strokeWidth="2"/>
-                  
-                  {/* Legend - positioned below the chart */}
-                  <g transform="translate(-45, 10)">
+
+                  <path d="M100,100 L100,30 A70,70 0 0,1 170.2,100 Z" fill="#ef4444" stroke="#fff" strokeWidth="2"/>
+
+                  <path d="M100,100 L29.8,100 A70,70 0 0,1 100,30 Z" fill="#6b7280" stroke="#fff" strokeWidth="2"/>
+
+                  <path d="M100,100 L170.2,100 A70,70 0 0,1 29.8,100 Z" fill="#10b981" stroke="#fff" strokeWidth="2"/>
+
+                  <g transform="translate(-25, 20)">
                     <circle cx="5" cy="5" r="4" fill="#ef4444"/>
                     <text x="15" y="9" className="text-xs fill-gray-700 dark:fill-gray-300">Negative </text>
                     
@@ -194,7 +185,7 @@ const ChartsSection = ({ progress, isActive }) => {
           </div>
         )}
 
-        {/* Step 2: Sentiment Timeline (25-50%) */}
+        {/* Step 2: Sentiment Timeline */}
         {progress > 0.25 && progress <= 0.5 && (
           <div className="mb-3 sm:mb-4">
             <div className="flex items-center gap-3 mb-3 sm:mb-4 transform transition-all duration-500">
@@ -212,40 +203,34 @@ const ChartsSection = ({ progress, isActive }) => {
             </div>
 
             <div className="grid grid-cols-1 gap-3 sm:gap-4">
-              {/* Realistic Multi-Line Chart - Sentiment Timeline */}
+              {/* Multi-Line Chart */}
               <div className="mt-4 h-64 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center shadow-inner">
                 <svg viewBox="0 0 400 200" className="w-full h-full">
-                  {/* Background grid */}
                   <defs>
                     <pattern id="timeline-grid" width="20" height="20" patternUnits="userSpaceOnUse">
                       <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f3f4f6" strokeWidth="0.5"/>
                     </pattern>
                   </defs>
                   
-                  {/* Background */}
                   <rect width="400" height="200" fill="url(#timeline-grid)" />
                   
-                  {/* Main axes */}
-                  <line x1="60" y1="160" x2="360" y2="160" stroke="#6b7280" strokeWidth="2"/>
-                  <line x1="60" y1="20" x2="60" y2="160" stroke="#6b7280" strokeWidth="2"/>
+                  <line x1="50" y1="160" x2="350" y2="160" stroke="#6b7280" strokeWidth="2"/>
+                  <line x1="50" y1="20" x2="50" y2="160" stroke="#6b7280" strokeWidth="2"/>
                   
-                  {/* Horizontal grid lines */}
-                  <line x1="60" y1="140" x2="360" y2="140" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
-                  <line x1="60" y1="120" x2="360" y2="120" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
-                  <line x1="60" y1="100" x2="360" y2="100" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
-                  <line x1="60" y1="80" x2="360" y2="80" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
-                  <line x1="60" y1="60" x2="360" y2="60" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
-                  <line x1="60" y1="40" x2="360" y2="40" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
+                  <line x1="50" y1="140" x2="350" y2="140" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
+                  <line x1="50" y1="120" x2="350" y2="120" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
+                  <line x1="50" y1="100" x2="350" y2="100" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
+                  <line x1="50" y1="80" x2="350" y2="80" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
+                  <line x1="50" y1="60" x2="350" y2="60" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
+                  <line x1="50" y1="40" x2="350" y2="40" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
                   
-                  {/* Vertical grid lines */}
-                  <line x1="120" y1="20" x2="120" y2="160" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
-                  <line x1="180" y1="20" x2="180" y2="160" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
-                  <line x1="240" y1="20" x2="240" y2="160" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
-                  <line x1="300" y1="20" x2="300" y2="160" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
+                  <line x1="110" y1="20" x2="110" y2="160" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
+                  <line x1="170" y1="20" x2="170" y2="160" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
+                  <line x1="230" y1="20" x2="230" y2="160" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
+                  <line x1="290" y1="20" x2="290" y2="160" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="2,2"/>
                   
-                  {/* Positive sentiment line (Green) */}
                   <polyline 
-                    points="80,120 100,100 120,110 140,80 160,90 180,70 200,85 220,65 240,75 260,55 280,65 300,45 320,55 340,35"
+                    points="70,120 90,100 110,110 130,80 150,90 170,70 190,85 210,65 230,75 250,55 270,65 290,45 310,55 330,35"
                     fill="none" 
                     stroke="#10b981" 
                     strokeWidth="3"
@@ -253,9 +238,8 @@ const ChartsSection = ({ progress, isActive }) => {
                     strokeLinejoin="round"
                   />
                   
-                  {/* Negative sentiment line (Red) */}
                   <polyline 
-                    points="80,150 100,145 120,140 140,135 160,130 180,125 200,120 220,115 240,110 260,105 280,100 300,95 320,90 340,85"
+                    points="70,150 90,145 110,140 130,135 150,130 170,125 190,120 210,115 230,110 250,105 270,100 290,95 310,90 330,85"
                     fill="none" 
                     stroke="#ef4444" 
                     strokeWidth="3"
@@ -263,9 +247,8 @@ const ChartsSection = ({ progress, isActive }) => {
                     strokeLinejoin="round"
                   />
                   
-                  {/* Neutral sentiment line (Gray) */}
                   <polyline 
-                    points="80,135 100,125 120,130 140,115 160,120 180,105 200,110 220,95 240,100 260,85 280,90 300,75 320,80 340,70"
+                    points="70,135 90,125 110,130 130,115 150,120 170,105 190,110 210,95 230,100 250,85 270,90 290,75 310,80 330,70"
                     fill="none" 
                     stroke="#6b7280" 
                     strokeWidth="3"
@@ -273,84 +256,77 @@ const ChartsSection = ({ progress, isActive }) => {
                     strokeLinejoin="round"
                   />
                   
-                  {/* Data points for Positive */}
-                  <circle cx="80" cy="120" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="100" cy="100" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="120" cy="110" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="140" cy="80" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="160" cy="90" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="180" cy="70" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="200" cy="85" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="220" cy="65" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="240" cy="75" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="260" cy="55" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="280" cy="65" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="300" cy="45" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="320" cy="55" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="340" cy="35" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="70" cy="120" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="90" cy="100" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="110" cy="110" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="130" cy="80" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="150" cy="90" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="170" cy="70" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="190" cy="85" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="210" cy="65" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="230" cy="75" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="250" cy="55" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="270" cy="65" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="290" cy="45" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="310" cy="55" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="330" cy="35" r="3" fill="#10b981" stroke="#ffffff" strokeWidth="2"/>
                   
-                  {/* Data points for Negative */}
-                  <circle cx="80" cy="150" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="100" cy="145" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="120" cy="140" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="140" cy="135" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="160" cy="130" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="180" cy="125" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="200" cy="120" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="220" cy="115" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="240" cy="110" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="260" cy="105" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="280" cy="100" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="300" cy="95" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="320" cy="90" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="340" cy="85" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="70" cy="150" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="90" cy="145" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="110" cy="140" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="130" cy="135" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="150" cy="130" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="170" cy="125" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="190" cy="120" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="210" cy="115" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="230" cy="110" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="250" cy="105" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="270" cy="100" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="290" cy="95" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="310" cy="90" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="330" cy="85" r="3" fill="#ef4444" stroke="#ffffff" strokeWidth="2"/>
                   
-                  {/* Data points for Neutral */}
-                  <circle cx="80" cy="135" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="100" cy="125" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="120" cy="130" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="140" cy="115" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="160" cy="120" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="180" cy="105" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="200" cy="110" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="220" cy="95" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="240" cy="100" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="260" cy="85" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="280" cy="90" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="300" cy="75" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="320" cy="80" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
-                  <circle cx="340" cy="70" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="70" cy="135" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="90" cy="125" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="110" cy="130" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="130" cy="115" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="150" cy="120" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="170" cy="105" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="190" cy="110" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="210" cy="95" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="230" cy="100" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="250" cy="85" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="270" cy="90" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="290" cy="75" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="310" cy="80" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
+                  <circle cx="330" cy="70" r="3" fill="#6b7280" stroke="#ffffff" strokeWidth="2"/>
                   
-                  {/* X-axis labels (Dates) */}
-                  <text x="80" y="180" className="text-xs fill-gray-600 text-center font-medium">Jan 1</text>
-                  <text x="120" y="180" className="text-xs fill-gray-600 text-center font-medium">Jan 8</text>
-                  <text x="160" y="180" className="text-xs fill-gray-600 text-center font-medium">Jan 15</text>
-                  <text x="200" y="180" className="text-xs fill-gray-600 text-center font-medium">Jan 22</text>
-                  <text x="240" y="180" className="text-xs fill-gray-600 text-center font-medium">Jan 29</text>
-                  <text x="280" y="180" className="text-xs fill-gray-600 text-center font-medium">Feb 5</text>
-                  <text x="320" y="180" className="text-xs fill-gray-600 text-center font-medium">Feb 12</text>
+                  <text x="70" y="175" className="text-xs fill-gray-600 text-center font-medium">Jan 1</text>
+                  <text x="110" y="175" className="text-xs fill-gray-600 text-center font-medium">Jan 8</text>
+                  <text x="150" y="175" className="text-xs fill-gray-600 text-center font-medium">Jan 15</text>
+                  <text x="190" y="175" className="text-xs fill-gray-600 text-center font-medium">Jan 22</text>
+                  <text x="230" y="175" className="text-xs fill-gray-600 text-center font-medium">Jan 29</text>
+                  <text x="270" y="175" className="text-xs fill-gray-600 text-center font-medium">Feb 5</text>
+                  <text x="310" y="175" className="text-xs fill-gray-600 text-center font-medium">Feb 12</text>
                   
-                  {/* Y-axis labels (Number of comments) */}
-                  <text x="45" y="25" className="text-xs fill-gray-600 font-medium">80</text>
-                  <text x="45" y="45" className="text-xs fill-gray-600 font-medium">60</text>
-                  <text x="45" y="65" className="text-xs fill-gray-600 font-medium">40</text>
-                  <text x="45" y="85" className="text-xs fill-gray-600 font-medium">20</text>
-                  <text x="45" y="105" className="text-xs fill-gray-600 font-medium">0</text>
+                  <text x="40" y="25" className="text-xs fill-gray-600 font-medium">80</text>
+                  <text x="40" y="45" className="text-xs fill-gray-600 font-medium">60</text>
+                  <text x="40" y="65" className="text-xs fill-gray-600 font-medium">40</text>
+                  <text x="40" y="85" className="text-xs fill-gray-600 font-medium">20</text>
+                  <text x="40" y="105" className="text-xs fill-gray-600 font-medium">0</text>
                   
-                  {/* Axis titles */}
-                  <text x="210" y="195" className="text-sm fill-gray-700 text-center font-semibold">Date</text>
-                  <text x="5" y="100" className="text-sm fill-gray-700 font-semibold" transform='rotate(-90 25,90)'>Comments</text>
+                  <text x="200" y="190" className="text-sm fill-gray-700 text-center font-semibold">Date</text>
+                  <text x="10" y="90" className="text-sm fill-gray-700 font-semibold" transform='rotate(-90 20,90)'>Comments</text>
 
-                  {/* Legend */}
-                  <g transform="translate(-70, 25)">
-                    <line x1="0" y1="0" x2="15" y2="0" stroke="#10b981" strokeWidth="3" strokeLinecap="round"/>
-                    <text x="20" y="4" className="text-xs fill-gray-600 font-medium">Positive</text>
+                  <g transform="translate(70, 25)">
+                    <line x1="0" y1="0" x2="12" y2="0" stroke="#10b981" strokeWidth="2" strokeLinecap="round"/>
+                    <text x="15" y="4" className="text-xs fill-gray-600 font-medium">Pos</text>
                     
-                    <line x1="0" y1="15" x2="15" y2="15" stroke="#ef4444" strokeWidth="3" strokeLinecap="round"/>
-                    <text x="20" y="19" className="text-xs fill-gray-600 font-medium">Negative</text>
+                    <line x1="0" y1="12" x2="12" y2="12" stroke="#ef4444" strokeWidth="2" strokeLinecap="round"/>
+                    <text x="15" y="16" className="text-xs fill-gray-600 font-medium">Neg</text>
                     
-                    <line x1="0" y1="30" x2="15" y2="30" stroke="#6b7280" strokeWidth="3" strokeLinecap="round"/>
-                    <text x="20" y="34" className="text-xs fill-gray-600 font-medium">Neutral</text>
+                    <line x1="0" y1="24" x2="12" y2="24" stroke="#6b7280" strokeWidth="2" strokeLinecap="round"/>
+                    <text x="15" y="28" className="text-xs fill-gray-600 font-medium">Neu</text>
                   </g>
                 </svg>
               </div>
@@ -358,7 +334,7 @@ const ChartsSection = ({ progress, isActive }) => {
           </div>
         )}
 
-        {/* Step 3: Comment Length Distribution (50-75%) */}
+        {/* Step 3: Comment Length Distribution */}
         {progress > 0.5 && progress <= 0.75 && (
           <div className="mb-3 sm:mb-4">
             <div className="flex items-center gap-3 mb-3 sm:mb-4 transform transition-all duration-500">
@@ -376,10 +352,9 @@ const ChartsSection = ({ progress, isActive }) => {
             </div>
 
             <div className="grid grid-cols-1 gap-3 sm:gap-4">
-              {/* Enhanced Bar Chart SVG */}
+              {/* Bar Chart */}
               <div className="h-56 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center shadow-inner">
                 <svg viewBox="0 0 400 150" className="w-full h-full">
-                  {/* Background grid */}
                   <defs>
                     <pattern id="grid-bg" width="20" height="20" patternUnits="userSpaceOnUse">
                       <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f3f4f6" strokeWidth="0.5"/>
@@ -387,38 +362,32 @@ const ChartsSection = ({ progress, isActive }) => {
                   </defs>
                   <rect width="400" height="150" fill="url(#grid-bg)" />
                   
-                  {/* Axes */}
                   <line x1="50" y1="160" x2="350" y2="160" stroke="#6b7280" strokeWidth="2"/>
                   <line x1="50" y1="20" x2="50" y2="160" stroke="#6b7280" strokeWidth="2"/>
                   
-                  {/* Bars with gradient colors */}
                   <rect x="70" y="120" width="25" height="40" fill="#3b82f6" rx="3"/>
                   <rect x="105" y="100" width="25" height="60" fill="#8b5cf6" rx="3"/>
                   <rect x="140" y="80" width="25" height="80" fill="#10b981" rx="3"/>
                   <rect x="175" y="90" width="25" height="70" fill="#f59e0b" rx="3"/>
                   <rect x="210" y="110" width="25" height="50" fill="#ef4444" rx="3"/>
                   
-                  {/* X-axis labels */}
                   <text x="82" y="180" className="text-xs fill-gray-600 text-center">0-50</text>
                   <text x="117" y="180" className="text-xs fill-gray-600 text-center">51-100</text>
                   <text x="152" y="180" className="text-xs fill-gray-600 text-center">101-200</text>
                   <text x="187" y="180" className="text-xs fill-gray-600 text-center">201-500</text>
                   <text x="222" y="180" className="text-xs fill-gray-600 text-center">500+</text>
                   
-                  {/* Y-axis labels */}
                   <text x="35" y="25" className="text-xs fill-gray-600">100</text>
                   <text x="35" y="65" className="text-xs fill-gray-600">75</text>
                   <text x="35" y="105" className="text-xs fill-gray-600">50</text>
                   <text x="35" y="145" className="text-xs fill-gray-600">25</text>
                   <text x="35" y="165" className="text-xs fill-gray-600">0</text>
                   
-                  {/* Axis titles */}
                   <text x="200" y="195" className="text-sm fill-gray-700 text-center font-medium">Comment Length (words)</text>
                   <text x="15" y="90" className="text-sm fill-gray-700 font-medium" transform="rotate(-90, 15, 90)">Count</text>
                 </svg>
               </div>
               
-              {/* Engagement depth insights - mobile-friendly */}
               <div className="mt-3 sm:mt-4 grid grid-cols-2 sm:grid-cols-5 gap-1.5 sm:gap-2">
                 {[
                   { range: '0-50', label: 'Quick', color: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300' },
@@ -449,7 +418,7 @@ const ChartsSection = ({ progress, isActive }) => {
           </div>
         )}
 
-        {/* Step 4: Word Cloud (75%+) */}
+        {/* Step 4: Word Cloud */}
         {progress > 0.75 && (
           <div className={`transition-all duration-1000 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <div className="pt-4 sm:pt-6">
@@ -459,7 +428,6 @@ const ChartsSection = ({ progress, isActive }) => {
               </h4>
 
               <div className="grid grid-cols-1 gap-1.5 sm:gap-2">
-                {/* Word Cloud Filter Buttons - Ultra Compact */}
                 <div className="flex justify-center gap-1 mb-1">
                   {[
                     { key: 'all', label: 'All', color: 'bg-gray-500' },
@@ -481,9 +449,7 @@ const ChartsSection = ({ progress, isActive }) => {
                   ))}
                 </div>
 
-                {/* Word Cloud Content - Ultra Compact */}
                 {wordCloudFilter === 'all' ? (
-                  /* Grid view for all sentiments - Ultra Compact */
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-1.5">
                     {['positive', 'neutral', 'negative'].map((sentiment, index) => {
                       const words = getWordCloudData(sentiment);
@@ -544,7 +510,6 @@ const ChartsSection = ({ progress, isActive }) => {
                     })}
                   </div>
                 ) : (
-                  /* Single sentiment view - Ultra Compact */
                   <div className="bg-white dark:bg-gray-800 rounded-md p-2 border border-gray-200 dark:border-gray-700">
                     <div className="text-center mb-1.5">
                       <h5 className={`text-sm font-semibold capitalize mb-0.5 ${
@@ -589,7 +554,6 @@ const ChartsSection = ({ progress, isActive }) => {
                   </div>
                 )}
 
-                {/* Ultra Compact Legend */}
                 <div className="mt-2 flex items-center justify-center gap-2 text-xs text-gray-600 dark:text-gray-400">
                   <div className="flex items-center gap-0.5">
                     <div className="w-1.5 h-1.5 bg-gradient-to-r from-green-400 to-green-600 rounded-full"></div>

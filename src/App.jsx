@@ -2,14 +2,14 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import DemoComponent from "./components/DemoComponent";
-import Renovation from "./components/Renovation";
+import CTASection from "./components/CTASection";
 import Layout from "./components/Layout";
 
 /**
  * App - Main application component
  *
  * Root component that orchestrates the entire landing page structure.
- * Renders all major sections including navigation, hero, demo, renovation,
+ * Renders all major sections including navigation, hero, demo, call-to-action,
  * and footer components within a layout wrapper.
  *
  * @component
@@ -26,7 +26,7 @@ export default function App() {
       <Navbar />
       <Hero />
       <DemoComponent />
-      <Renovation />
+      <CTASection />
       <Footer />
     </Layout>
   );

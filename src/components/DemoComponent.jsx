@@ -9,7 +9,6 @@ import StatisticsSection from './StatisticsSection';
 import ChartsSection from './ChartsSection';
 import ReportSection from './ReportSection'
 
-// Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 /**
@@ -37,21 +36,24 @@ const DemoComponent = () => {
 
   /**
    * Current scroll progress through the demo (0-1)
-   * @type {[number, function]}
+   * @type {[number, React.Dispatch<React.SetStateAction<number>>]}
    */
   const [scrollProgress, setScrollProgress] = useState(0);
 
   /**
    * Whether the demo section is currently active/visible
-   * @type {[boolean, function]}
+   * @type {[boolean, React.Dispatch<React.SetStateAction<boolean>>]}
    */
   const [isActive, setIsActive] = useState(false);
 
+  /**
+   * Sets up GSAP ScrollTrigger for scroll-hijacked demo experience
+   * Creates a pinned container with extended duration for sequential section transitions
+   */
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    // Extended duration for sequential sections (7 sections total)
     const totalDuration = 14000;
 
     const trigger = ScrollTrigger.create({
@@ -83,80 +85,73 @@ const DemoComponent = () => {
       ref={containerRef}
       className="w-full relative min-h-screen z-10"
     >
-      {/* URL Section - ridotto per dare spazio alle nuove sezioni */}
       {scrollProgress <= 0.3 && (
         <div className="absolute w-full inset-0 flex items-center justify-center pt-16 z-20">
           <UrlSection
-            progress={Math.min(scrollProgress * 3.33, 1)} // Normalizza 0-0.3 a 0-1
+            progress={Math.min(scrollProgress * 3.33, 1)}
             isActive={isActive && scrollProgress <= 0.3}
           />
         </div>
       )}
 
-      {/* Topic Section - ridotto per dare spazio alle nuove sezioni */}
       {scrollProgress > 0.3 && scrollProgress <= 0.5 && (
         <div className="absolute w-full inset-0 flex items-center justify-center pt-16 z-20">
           <TopicSection
-            progress={(scrollProgress - 0.3) / 0.2} // Normalizza 0.3-0.5 a 0-1
+            progress={(scrollProgress - 0.3) / 0.2}
             isActive={isActive && scrollProgress > 0.3 && scrollProgress <= 0.5}
           />
         </div>
       )}
 
-      {/* Progress Bar - ridotto per dare spazio alle nuove sezioni */}
       {scrollProgress > 0.5 && scrollProgress <= 0.6 && (
         <div className="absolute w-full inset-0 flex items-center justify-center pt-16 z-20">
           <div className="w-full mx-auto max-w-5xl text-center">
             <ProgressBar
-              progress={(scrollProgress - 0.5) / 0.1} // Normalizza 0.5-0.6 a 0-1
+              progress={(scrollProgress - 0.5) / 0.1}
               isActive={isActive && scrollProgress > 0.5 && scrollProgress <= 0.6}
             />
           </div>
         </div>
       )}
 
-      {/* Actions Section */}
       {scrollProgress > 0.6 && scrollProgress <= 0.7 && (
         <div className="absolute w-full inset-0 flex items-start justify-center px-8 pt-24 z-20">
           <div className="w-full max-w-4xl mt-12">
             <ActionsSection
-              progress={(scrollProgress - 0.6) / 0.1} 
+              progress={(scrollProgress - 0.6) / 0.1}
               isActive={isActive && scrollProgress > 0.6 && scrollProgress <= 0.7}
             />
           </div>
         </div>
       )}
 
-      {/* Statistics Section */}
       {scrollProgress > 0.7 && scrollProgress <= 0.8 && (
         <div className="absolute w-full inset-0 flex items-center px-8 justify-center pt-16 z-20">
           <div className="w-full max-w-4xl">
             <StatisticsSection
-              progress={(scrollProgress - 0.7) / 0.1} // Normalizza 0.7-0.8 a 0-1
+              progress={(scrollProgress - 0.7) / 0.1}
               isActive={isActive && scrollProgress > 0.7 && scrollProgress <= 0.8}
             />
           </div>
         </div>
       )}
 
-      {/* Charts Section */}
       {scrollProgress > 0.8 && scrollProgress < 0.9 && (
         <div className="absolute w-full inset-0 px-8 flex items-center justify-center pt-16 z-20">
           <div className="w-full max-w-4xl">
             <ChartsSection
-              progress={(scrollProgress - 0.8) / 0.1} 
+              progress={(scrollProgress - 0.8) / 0.1}
               isActive={isActive && scrollProgress > 0.8 && scrollProgress < 0.9}
             />
           </div>
         </div>
       )}
 
-      {/* Report Section */}
       {scrollProgress >= 0.9 && (
         <div className="absolute w-full inset-0 flex items-center pb-4 px-8 justify-center pt-16 z-20">
           <div className="w-full max-w-4xl">
             <ReportSection
-              progress={(scrollProgress - 0.9) / 0.1} 
+              progress={(scrollProgress - 0.9) / 0.1}
               isActive={isActive && scrollProgress >= 0.9}
             />
           </div>

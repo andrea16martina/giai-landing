@@ -165,10 +165,8 @@ const StatisticsSection = ({ progress, isActive }) => {
           Statistics
         </h3>
 
-        {/* Step 1: Sentiment Statistics - Visible before 50% progress */}
         {progress <= 0.5 && (
           <div className="mb-6 sm:mb-8">
-            {/* Header section */}
             <div className="flex items-center gap-3 mb-4 sm:mb-6 transform transition-all duration-500">
               <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
                 <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -185,7 +183,6 @@ const StatisticsSection = ({ progress, isActive }) => {
               </div>
             </div>
 
-            {/* Mobile-first responsive grid */}
             <div className="grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {sentimentStats.map((stat, index) => (
                 <div
@@ -214,7 +211,6 @@ const StatisticsSection = ({ progress, isActive }) => {
           </div>
         )}
 
-        {/* Step 2: Analytics Dashboard - Replaces sentiment stats after 50% progress */}
         {progress > 0.5 && (
           <div className={`transition-all duration-1000 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <div className="pt-6 sm:pt-8">

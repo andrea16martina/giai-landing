@@ -13,8 +13,22 @@ import React, { useState, useEffect } from 'react';
  * @returns {JSX.Element} Actions panel with interactive buttons
  */
 const ActionsSection = ({ progress, isActive }) => {
+  /**
+   * Menu open state
+   * @type {[boolean, React.Dispatch<React.SetStateAction<boolean>>]}
+   */
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  /**
+   * Selected export option
+   * @type {[string, React.Dispatch<React.SetStateAction<string>>]}
+   */
   const [selectedOption, setSelectedOption] = useState('');
+
+  /**
+   * Export loading state
+   * @type {[boolean, React.Dispatch<React.SetStateAction<boolean>>]}
+   */
   const [isExporting, setIsExporting] = useState(false);
 
   const exportOptions = [
@@ -24,27 +38,28 @@ const ActionsSection = ({ progress, isActive }) => {
     { format: 'csv', name: 'CSV Data', description: 'Spreadsheet format', icon: '📊' }
   ];
 
-  // Animation based on progress
+  /**
+   * Handles animation states based on progress
+   */
   useEffect(() => {
     if (progress > 0.3 && progress < 0.7) {
-      // Open menu when progress reaches 30%
       if (!isMenuOpen) {
         setIsMenuOpen(true);
       }
     } else if (progress >= 0.7 && progress < 0.9) {
-      // Simulate selection at 70%
       if (!selectedOption) {
         setSelectedOption('pdf');
       }
     } else if (progress >= 0.9) {
-      // Show exporting state at 90%
       if (!isExporting) {
         setIsExporting(true);
       }
     }
   }, [progress, isMenuOpen, selectedOption, isExporting]);
 
-  // Reset states when section becomes inactive
+  /**
+   * Resets states when section becomes inactive
+   */
   useEffect(() => {
     if (!isActive) {
       setIsMenuOpen(false);
@@ -69,7 +84,6 @@ const ActionsSection = ({ progress, isActive }) => {
             </div>
           </div>
 
-          {/* Actions positioned higher for better menu visibility */}
           <div className="flex flex-wrap gap-2 w-full sm:w-auto mt-2 sm:mt-0 justify-end sm:justify-start">
             <div className="flex flex-wrap gap-2 p-3 bg-white/50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-600">
               <div className="flex items-center gap-2 px-3 py-2 bg-blue-100 hover:bg-blue-200 dark:bg-blue-900/30 dark:hover:bg-blue-900/50 rounded-lg text-sm font-medium transition-all duration-200">
@@ -80,7 +94,6 @@ const ActionsSection = ({ progress, isActive }) => {
                 🔗 Share URL
               </div>
 
-              {/* Export Menu with Enhanced Visibility */}
               <div className="relative">
                 <div className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   isMenuOpen
@@ -96,14 +109,12 @@ const ActionsSection = ({ progress, isActive }) => {
                   </svg>
                 </div>
 
-                {/* Compact Menu for Better Visibility */}
                 <div className={`absolute top-full left-0 mt-2 z-20 transition-all duration-500 ease-out ${
                   isMenuOpen
                     ? 'opacity-100 translate-y-0 scale-100'
                     : 'opacity-0 -translate-y-2 scale-95 pointer-events-none'
                 }`}>
                   <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-600 overflow-hidden backdrop-blur-sm min-w-[280px] max-w-[320px]">
-                    {/* Compact Header */}
                     <div className="border-b border-gray-200 dark:border-gray-700 px-3 py-2 bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-700">
                       <h4 className="font-medium text-gray-900 dark:text-gray-100 text-xs flex items-center gap-2">
                         <svg className="w-3 h-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -113,7 +124,6 @@ const ActionsSection = ({ progress, isActive }) => {
                       </h4>
                     </div>
 
-                    {/* Compact Content */}
                     <div className="p-2">
                       {exportOptions.map((option, index) => (
                         <div
@@ -162,7 +172,6 @@ const ActionsSection = ({ progress, isActive }) => {
                       ))}
                     </div>
 
-                    {/* Compact Export Status */}
                     {isExporting && (
                       <div className="px-3 py-2 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-t border-gray-200 dark:border-gray-700">
                         <div className="flex items-center justify-center gap-2 text-xs">
