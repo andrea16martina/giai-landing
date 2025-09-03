@@ -135,8 +135,8 @@ const ActionsSection = ({ progress, isActive }) => {
                     <div
                       className={`
                         ${isMobile
-                          ? `fixed bottom-0 left-0 right-0 z-50 transition-transform duration-300 ease-out ${
-                              isMenuOpen ? 'translate-y-0' : 'translate-y-full'
+                          ? `fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 ease-out ${
+                              isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
                             }`
                           : `absolute top-full right-0 mt-2 z-20 transition-all duration-300 ease-out ${
                               isMenuOpen
@@ -149,7 +149,7 @@ const ActionsSection = ({ progress, isActive }) => {
                       <div className={`
                         bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-600 overflow-hidden backdrop-blur-sm
                         ${isMobile
-                          ? 'rounded-t-xl rounded-b-none max-h-[80vh]'
+                          ? 'rounded-xl max-h-[80vh] max-w-[90vw] w-full mx-4'
                           : 'w-96 max-w-[90vw] max-h-[70vh]'
                         }
                       `}>
