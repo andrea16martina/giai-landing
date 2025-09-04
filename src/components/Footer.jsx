@@ -20,7 +20,7 @@ export default function Footer() {
     <footer className="w-full px-4 py-3 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md text-blue-700 dark:text-blue-300 border-t border-blue-500 transition-colors z-50 relative overflow-hidden">
       <div className="flex justify-center space-x-6 relative z-10">
         <a
-          href="https://mastodon.social/"
+          href="https://defcon.social/@giai"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
