@@ -29,7 +29,7 @@ export default function Footer() {
           <FaMastodon size={24} />
         </a>
         <a
-          href="https://reddit.com/"
+          href="https://www.reddit.com/user/giai-analytics/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
